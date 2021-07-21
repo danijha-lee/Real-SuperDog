@@ -55,48 +55,47 @@
     </nav>
 
 
-
-
-    <main class="flex-shrink-0">
-        <div class="container">
+    <main onload="buildDropDown()" class="flex-shrink-0">
+    <div class="container-fluid">
+        <div class="dogContainer" style="margin-top: 100px;">
             <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <h1>Super Dog</h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h1 style="text-align: center;">Instructions</h1>
-                            <h3> </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <h1>Enter Values</h1>
-                        <div class="col">
-                            <input type="number" class="form-control" id="startValue" placeholder="Start Value" value=0>
-                        </div>
-                        <div class="col">
-                            <input type="number" class="form-control" id="endValue" placeholder="End Value" value=100>
-                        </div>
-                        <button id="submitBtn" class="btn btn-primary">Click Me</button>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h1 style="text-align: center;">Results</h1>
-                            <table class="table table-striped">
-                                <tbody id="output">
+                <div class="col-6">
+                  <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                          Pick A Location
+                      </button>
+                      <ul id="eventDropDown" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" onclick="" data-string="New York">New York</a></li>
+                          <li><a class="dropdown-item" onclick="" data-string="California">California</a></li>
+                          <li><a class="dropdown-item" onclick="" data-string="North Carolina">North Carolina</a></li>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" onclick="" data-string="All">All</a>
+                      </ul>
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                  </div>
+                  <table class="table table-striped">
+                     <thead>
+                        <tr><th colspan="2" id="statsHeader">Stats For All Events</th></tr>
+                     </thead>
+                     <tbody>
+                       <tr><td>Total Attendence</td><td id="total">100</td></tr>
+                       <tr><td>Average Attendence</td><td id="average">100</td></tr>
+                       <tr><td>Most Attended</td><td id="most">100</td></tr>
+                       <tr><td>Least Attended</td><td id="least">100</td></tr>
+                     </tbody>
+                  </table>
+                </div>
+                <div class="col-6">
+                    <img src="/img/Super Dog Dog with cape logo.png" class="img-fluid p-2">
+                </div>
+           </div>
+            <div class="row">
+                <div class="col-12">
+
                 </div>
             </div>
         </div>
+    </div>
     </main>
 
 
@@ -129,9 +128,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/prism.js"></script>
     <script src="js/site.js"></script>
-    <script>
-        document.getElementById("submitBtn").addEventListener("click", getNumbers)
-    </script>
+   
 
     <!-- <script src="/js/all.min.js"></script>-->
 

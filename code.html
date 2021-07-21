@@ -164,7 +164,26 @@ document.getElementById("output").innerHTML = templateRows;
 </pre>
                 </div>
                 <div class="col-4" id="explainCol">
-
+                   <p>
+                       filteredEvents is the default display for all events.
+                   </p>
+                   <hr>
+                   <p>
+                       The function buildDropDown gets distince events from the events array. 
+                       We need an array of New York, San Diego and Charlotte; instead of having 9 values, we only want 3 values in that array
+                       We use the spread operator to get individual elements from an array.
+                       The set operator gives back the unique values from the array that's passed in.
+                       We pass the events array into the set operator with the map function 
+                       <br>
+                       We add the html from out drop down button that when clicked will trigger the getEvents funciton.
+                       Our goal is to catenate all of the a tags and tack them together and build a string as we go.
+                       We run through a list of these arrays using a for loop, tack them together, then display them to the screen.
+                       We use the resultHtml variabe to hold our final results.
+                       <br>
+                       The incrementing for loop loops over all of the distinct events that we have. We set the index epual to 0 because the first 
+                       position of every array is 0.
+                       As long as the index is less than 0 we are good.
+                   </p>
                 </div>
             </div>
         </div>

@@ -1,75 +1,81 @@
-function getNumbers() {
-    //access the webpage and get the values from the inputs
-    let startValue = document.getElementById("startValue").value;
-    let endValue = document.getElementById("endValue").value;
+var events = [
+    { event: "ComicCon", city: "New York", state: "New York", attendance: 240000, date: "06/01/2017" },
+    { event:"ComicCon", city:"New York", state:"New York", attendance:250000, date:"06/01/2018" },
+    {event:"ComicCon", city:"New York", state:"New York", attendance:257000, date:"06/01/2019"},
+    {event:"ComicCon", city:"San Diego", state:"New York", attendance:130000, date: "06/01/2017"},
+    {event:"ComicCon", city:"San Diego", state:"New York", attendance: 140000, date:"06/01/2018"},
+    {event: "ComicCon", city:"San Diego", state: "New York",attendance: 150000,date: "06/01/2019"},
+    {event: "ComicCon",city: "Charlotte",state: "North Carolina", attendance: 40000, date: "06/01/2017"},
+    {event: "ComicCon", city: "Charlotte", state: "North Carolina", attendance: 45000, date: "06/01/2018"},
+    {event: "ComicCon", city: "Charlotte", state: "North Carolina", attendance: 50000, date: "06/01/2019" },
+];
 
-    let newStart = parseInt(startValue);
-    let newEnd = parseInt(endValue);
+var filteredEvents = events;
 
-    let errorState = false;
-    let errorMsg = "";
+function buildDropDown(){
+    let eventDD = document.getElementById("eventDropDown");
 
-    if (isNaN(newStart) || isNaN(newEnd)) {
-        errorState = true;
-        errorMsg += "Please use numbers<hr/>";
+    let distinctEvents = [...new Set(events.map(event => event.city))];
 
+    let linkHTMLEnd = ' <div class="dropdown-divider"></div> <a class = "dropdown-item" onclick = "getEvents(this"  data - string = "All" > All < /a>';
+
+    let resultHTML = "";
+
+    for (let index = 0; index < distinctEvents.length; index++) {
+        
+        resultHTML += `<a class="dropdown-item" onclick="getEvents(this)" data-string="${distinctEvents[index]}">${distinctEvents[index]}</a>`;
     }
+    resultHTML += linkHTMLEnd;
+    eventDD.innerHTML = resultHTML;
 
-    if (newStart > newEnd) {
-        errorState = true;
-        errorMsg += "Start value must be less than end value<hr/>";
-    }
-
-    if (newStart > 10000 || newStart < -10000 || newEnd > 10000 || newEnd < -10000) {
-        errorState = true;
-        errorMsg += "-10,0000 and 10,000 are the limit<hr/>"
-    }
-
-    if (errorState) {
-        Swal.fire(
-            'Something went wrong',
-            'You clicked the button!',
-            'error'
-        )
-        return;
-    }
-    //take the start and end values as the bounds for a 'for' loop
-    //that will create an array and return it
-    let numbers = generateNumbers(newStart, newEnd);
-
-    //take the array that was returned and pass it to a function that will
-    //display it
-    displayNumbers(numbers);
 }
 
-//Wrapper function/method - a function that calls other functions
+function getEvents(element) {
+    let city = element.getAttribute("data-string");
+    filteredEvents = events;
+    document.getElementById("statsHeader").innerHTML = `Stats for ${city} Events`;
 
-function generateNumbers(startValue, endValue) {
-    let numbers = [];
-
-    //loop over every number from startValue to endValue
-    for (let index = startValue; index <= endValue; index++) {
-        numbers.push(index);
+    if (city != 'All') {
+        filteredEvents = events.filter(funcntion(item));{
+            if(item.city == city){
+            return item;
+            }
+        }
     }
-
-    return numbers;
 }
 
-function displayNumbers(fluffyKitty) {
-    let className = "even";
-    let templateRows = "";
+displayStats();
 
-    for (let index = 0; index < fluffyKitty.length; index++) {
-        let number = fluffyKitty[index];
+fucntion displayStats(){
+    let toral = 0;
+    let average = 0;
+    let most = 0;
+    let least = 0;
+    let currentAttendence = 0;
 
-        if (number % 2 == 0) {
-            className = "even";
-        } else {
-            className = "odd";
+    for (var index = 0; index < filteredEvents.length; index++) {
+        currentAttendence = filteredEvents[index].attendance;
+        total += currentAttendence;
+
+        if (most < currentAttendence) {
+            most = currentAttendence;
         }
 
-        templateRows = templateRows + `<tr><td class="${className}">${number}</td></tr>`;
+        if (least > currentAttendence || least < 0)
+            least = currentAttendence;
     }
+    average = total / filteredEvents.length;
 
-    document.getElementById("output").innerHTML = templateRows;
+    document.getElementById("total").innerHTML = total.toLocalString();
+    document.getElementById("most").innerHTML = most.toLocalString();
+    document.getElementById("least").innerHTML = least.toLocalString();
+    document.getElementById("average").innerHTML = average.toLocalString(undefined, {minimumFractionDigits: 0});
+
+
+
 }
+
+
+
+
+

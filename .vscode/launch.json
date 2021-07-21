@@ -9,7 +9,7 @@
             "type": "pwa-msedge",
             "request": "launch",
             "name": "launch ",
-            "url": "http://127.0.0.1:5500/JavaScript/"
+            "url": "http://127.0.0.1:5500"
         }
     ]
 }
