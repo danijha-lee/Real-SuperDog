@@ -46,7 +46,7 @@ function getEvents(element) {
 
 displayStats();
 
-fucntion displayStats(){
+fucntion displayStats() {
     let toral = 0;
     let average = 0;
     let most = 0;
